@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { boardDefault } from "../Words";
 import Letter from "./Letter";
+import { AppContext } from "../App";
 
 const Board = () => {
+  const { wordNotFound } = useContext(AppContext);
+
   return (
-    <div className="board">
+    <div className={`board ${wordNotFound && "shake"}`}>
       {boardDefault.map((row, rowIndex) => (
         <div className="row" key={`row${rowIndex}`}>
           {row.map((letter, letterIndex) => (

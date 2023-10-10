@@ -14,6 +14,7 @@ function App() {
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [wordSet, setWordSet] = useState(new Set());
   const [disabledLetters, setDisabledLetters] = useState([]);
+  const [wordNotFound, setWordNotFound] = useState(false);
   const [correctWord, setCorrectWord] = useState("");
   const [gameOver, setGameOver] = useState({
     gameOver: false,
@@ -24,7 +25,6 @@ function App() {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.todaysWord);
-      console.log(words.todaysWord);
     });
   }, [])
 
@@ -38,6 +38,9 @@ function App() {
 
   const onDelete = () => {
     if (currAttempt.letterPos === 0) return;
+
+    if (wordNotFound) { setWordNotFound(false); }
+
     const newBoard = [...board];
     newBoard[currAttempt.attempt][currAttempt.letterPos - 1] = "";
     setBoard(newBoard);
@@ -56,13 +59,11 @@ function App() {
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
     } else {
-      //maybe should implement an animation here
-      alert("Word not found");
+      setWordNotFound(true);
     }
 
     if (currWord.toLowerCase() === correctWord) {
       setGameOver({ gameOver: true, win: true });
-      console.log("You win!");
       return;
     }
 
@@ -89,6 +90,7 @@ function App() {
         setDisabledLetters,
         gameOver,
         setGameOver,
+        wordNotFound,
       }}>
         <div className='game'>
           <Board />
