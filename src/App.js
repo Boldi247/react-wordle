@@ -60,8 +60,9 @@ function App() {
       alert("Word not found");
     }
 
-    if (currWord === correctWord) {
+    if (currWord.toLowerCase() === correctWord) {
       setGameOver({ gameOver: true, win: true });
+      console.log("You win!");
       return;
     }
 
