@@ -3,7 +3,7 @@ import { LuDelete } from "react-icons/lu";
 import { useContext } from "react";
 import { AppContext } from "../App";
 
-const Key = ({ keyVal, bigKey }) => {
+const Key = ({ keyVal, bigKey, disabled }) => {
   const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
 
   const selectLetter = () => {
@@ -17,7 +17,10 @@ const Key = ({ keyVal, bigKey }) => {
   };
 
   return (
-    <div className="key" id={bigKey && "big"} onClick={selectLetter}>
+    <div
+      className={`key ${bigKey ? "big" : disabled && "disabled"}`}
+      onClick={selectLetter}
+    >
       {keyVal === "BACKSPACE" ? <LuDelete /> : keyVal}
     </div>
   );
