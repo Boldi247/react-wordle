@@ -4,12 +4,16 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 
 const Key = ({ keyVal, bigKey }) => {
-  const { board, setBoard } = useContext(AppContext);
+  const { onSelectLetter, onDelete, onEnter } = useContext(AppContext);
 
   const selectLetter = () => {
-    const newBoard = [...board];
-    newBoard[0][0] = keyVal;
-    setBoard(newBoard);
+    if (keyVal === "ENTER") {
+      onEnter();
+    } else if (keyVal === "BACKSPACE") {
+      onDelete();
+    } else {
+      onSelectLetter(keyVal);
+    }
   };
 
   return (
