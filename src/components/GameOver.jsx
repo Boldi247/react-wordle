@@ -8,6 +8,14 @@ const GameOver = () => {
       <h3>{gameOver.win ? "You Correctly Guessed!" : "You Failed!"}</h3>
       <h1>Correct: {correctWord} </h1>
       {gameOver.win && <h3>You guessed in {currAttempt.attempt} attempts</h3>}
+      <button
+        onClick={() => {
+          window.location.reload(true);
+        }}
+        x
+      >
+        Restart
+      </button>
     </div>
   );
 };
