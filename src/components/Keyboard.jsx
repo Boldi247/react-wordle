@@ -47,18 +47,18 @@ const Keyboard = () => {
     <div className="keyboard" onKeyDown={handleKeyboard}>
       <div className="line1">
         {keys1.map((key) => (
-          <Key keyVal={key} />
+          <Key keyVal={key} key={key} />
         ))}
       </div>
       <div className="line2">
         {keys2.map((key) => (
-          <Key keyVal={key} />
+          <Key keyVal={key} key={key} />
         ))}
       </div>
       <div className="line3">
         <Key keyVal={"ENTER"} bigKey />
         {keys3.map((key) => (
-          <Key keyVal={key} />
+          <Key keyVal={key} key={key} />
         ))}
         <Key keyVal={"BACKSPACE"} bigKey />
       </div>

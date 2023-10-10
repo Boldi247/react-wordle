@@ -8,14 +8,15 @@ const Letter = ({ letterPos, attemptVal }) => {
   const correct = correctWord[letterPos] === letter;
   const almost = !correct && letter !== "" && correctWord.includes(letter);
   const letterState =
-    currAttempt.attempt > attemptVal &&
-    (correct ? "correct" : almost ? "almost" : "error");
+    currAttempt.attempt > attemptVal
+      ? correct
+        ? "correct"
+        : almost
+        ? "almost"
+        : "error"
+      : "default";
 
-  return (
-    <div className="letter" id={letterState}>
-      {letter}
-    </div>
-  );
+  return <div className={`letter ${letterState}`}>{letter}</div>;
 };
 
 export default Letter;
