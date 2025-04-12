@@ -34,7 +34,7 @@ const Keyboard = () => {
         }
       });
     }
-  });
+  }, [ onEnter, onDelete, onSelectLetter, keys1, keys2, keys3]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);
