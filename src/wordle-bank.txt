@@ -431,6 +431,7 @@ cocoa
 colon
 color
 comet
+const
 comfy
 comic
 comma
@@ -1565,6 +1566,7 @@ refer
 refit
 regal
 rehab
+regex
 reign
 relax
 relay
@@ -2142,6 +2144,7 @@ tweet
 twice
 twine
 twirl
+tuple
 twist
 twixt
 tying

@@ -11,7 +11,11 @@
 body {
   padding: 0%;
   margin: 0;
-  background-color: #121212;
+  background-color: #e6e6e6;
+}
+
+.title {
+  color: rgb(52, 52, 52);
 }
 
 nav {
@@ -21,6 +25,19 @@ nav {
   border-bottom: 1px solid grey;
   display: grid;
   place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.difficulty-select {
+  position: absolute;
+  right: 80px;
+  width: 100px;
+  height: 30px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  color: #528d4e;
 }
 
 nav h1 {
@@ -60,18 +77,30 @@ nav h1 {
   align-items: center;
   font-size: 36px;
   border-radius: 4px;
+  background-color: rgb(212, 212, 212);
+}
+
+.letter {
+  color: #3a393c ;
 }
 
 .correct {
   background-color: #528d4e;
+  color: white;
 }
 
 .almost {
   background-color: #b49f39;
+  color: white;
 }
 
 .error {
   background-color: #3a393c;
+  color: white;
+}
+
+.sonrisa-logo {
+  color: rgb(83, 177, 83)
 }
 
 .keyboard {

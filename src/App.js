@@ -6,8 +6,14 @@ import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import { boardDefault, generateWordSet } from './Words';
 import GameOver from './components/GameOver';
+import React from "react";
 
 export const AppContext = createContext();
+
+export const DIFFICULTIES = {
+  EASY: "easy",
+  HARD: "hard",
+};
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
@@ -20,13 +26,27 @@ function App() {
     gameOver: false,
     win: false,
   });
+  const [difficulty, setDifficulty] = useState(DIFFICULTIES.EASY);
 
   useEffect(() => {
-    generateWordSet().then((words) => {
+    generateWordSet({difficulty}).then((words) => {
       setWordSet(words.wordSet);
       setCorrectWord(words.todaysWord);
     });
-  }, [])
+  }, [difficulty]);
+
+  useEffect(() => {
+    setBoard(boardDefault.map(row => [...row]));
+    setCurrAttempt({ attempt: 0, letterPos: 0 });
+    setDisabledLetters([]);
+    setWordNotFound(false);
+    setGameOver({ gameOver: false, win: false });
+  
+    generateWordSet({difficulty}).then((words) => {
+      setWordSet(words.wordSet);
+      setCorrectWord(words.todaysWord);
+    });
+  }, [difficulty]);
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
@@ -50,7 +70,6 @@ function App() {
   const onEnter = () => {
     if (currAttempt.letterPos !== 5) return;
 
-    //unite the letters in the row to form a word
     let currWord = "";
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
@@ -71,12 +90,21 @@ function App() {
       setGameOver({ gameOver: true, win: false });
       return;
     }
-
   };
 
   return (
     <div className="App">
-      <nav><h1>Wordle</h1></nav>
+      <nav>
+        <h1 className='title'>Wordle <span className='sonrisa-logo'>:)</span></h1>
+        <select
+          className='difficulty-select'
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
+        >
+          <option value={DIFFICULTIES.EASY}>Easy</option>
+          <option value={DIFFICULTIES.HARD}>Hard</option>
+        </select>
+      </nav>
       <AppContext.Provider value={{
         board,
         setBoard,
